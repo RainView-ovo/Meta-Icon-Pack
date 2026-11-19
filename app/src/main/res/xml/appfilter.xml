@@ -328,138 +328,12 @@
         component="ComponentInfo{com.android.bankabc/com.alipay.mobile.quinox.LauncherActivity}"
         drawable="comandroidbankabc" />
     <item
-        component="ComponentInfo{com.android.calculator2/com.android.calculator2.Calculator}"
-        drawable="comandroidcalculator2" />
-    <item
-        component="ComponentInfo{com.android.calculator2/com.android.calculator2.view.BaseActivity}"
-        drawable="comandroidcalculator2" />
-    <item
-        component="ComponentInfo{com.android.calendar/com.simplemobiletools.calendar.pro.activities.SplashActivity.Primary}"
-        drawable="comandroidcalendar" />
-    <item
-        component="ComponentInfo{com.android.calendar/com.meizu.flyme.calendar.AllInOneActivity}"
-        drawable="comandroidcalendar" />
-    <item
-        component="ComponentInfo{com.android.calendar/com.android.calendar.timeline.EventListWithStartTime}"
-        drawable="comandroidcalendar" />
-    <item
-        component="ComponentInfo{com.android.calendar/com.android.calendar.MonthActivity}"
-        drawable="comandroidcalendar" />
-    <item
-        component="ComponentInfo{com.android.calendar/com.android.calendar.LaunchTasksActivity}"
-        drawable="comandroidcalendar" />
-    <item
-        component="ComponentInfo{com.android.calendar/com.android.calendar.LaunchActivity}"
-        drawable="comandroidcalendar" />
-    <item
-        component="ComponentInfo{com.android.calendar/com.android.calendar.homepage.AllInOneActivity}"
-        drawable="comandroidcalendar" />
-    <item
-        component="ComponentInfo{com.android.calendar/com.android.calendar.EventInfoActivity}"
-        drawable="comandroidcalendar" />
-    <item
-        component="ComponentInfo{com.android.calendar/com.android.calendar.EditEventActivity}"
-        drawable="comandroidcalendar" />
-    <item
-        component="ComponentInfo{com.android.calendar/com.android.calendar.ChooserActivity}"
-        drawable="comandroidcalendar" />
-    <item
-        component="ComponentInfo{com.android.calendar/com.android.calendar.CalendarTabActivity}"
-        drawable="comandroidcalendar" />
-    <item
-        component="ComponentInfo{com.android.calendar/com.android.calendar.AllInOneActivity}"
-        drawable="comandroidcalendar" />
-    <item
-        component="ComponentInfo{com.android.calendar/com.android.calendar.AgendaActivity}"
-        drawable="comandroidcalendar" />
-    <item
         component="ComponentInfo{com.android.chrome/com.google.android.apps.chrome.Main}"
         drawable="comandroidchrome" />
     <item
-        component="ComponentInfo{com.android.contacts/com.sec.android.app.contacts.RecntcallEntryActivity}"
-        drawable="comandroidcontacts" />
-    <item
-        component="ComponentInfo{com.android.contacts/com.oneplus.contacts.activities.OPPeopleActivity}"
-        drawable="comandroidcontacts" />
-    <item
-        component="ComponentInfo{com.android.contacts/com.oneplus.contacts.activities.OPDialtactsActivity}"
-        drawable="comandroidcontacts" />
-    <item
-        component="ComponentInfo{com.android.contacts/com.android.mms.ui.ConversationList}"
-        drawable="comandroidcontacts" />
-    <item
-        component="ComponentInfo{com.android.contacts/com.android.dialer.DialtactsActivity"
-        drawable="comandroidcontacts" />
-    <item
-        component="ComponentInfo{com.android.contacts/com.android.contacts.PeopleActivityAlias}"
-        drawable="comandroidcontacts" />
-    <item
-        component="ComponentInfo{com.android.contacts/com.android.contacts.mainlist.PeopleActivity}"
-        drawable="comandroidcontacts" />
-    <item
-        component="ComponentInfo{com.android.contacts/com.android.contacts.DialtactsContactsEntryActivity}"
-        drawable="comandroidcontacts" />
-    <item
-        component="ComponentInfo{com.android.contacts/com.android.contacts.DialtactsActivityAlias}"
-        drawable="comandroidcontacts" />
-    <item
-        component="ComponentInfo{com.android.contacts/com.android.contacts.activities.WtDialerActivity}"
-        drawable="comandroidcontacts" />
-    <item
-        component="ComponentInfo{com.android.contacts/com.android.contacts.activities.TwelveKeyDialer}"
-        drawable="comandroidcontacts" />
-    <item
-        component="ComponentInfo{com.android.contacts/com.android.contacts.activities.PeopleActivity}"
-        drawable="comandroidcontacts" />
-    <item
-        component="ComponentInfo{com.android.contacts/com.android.contacts.activities.DialtactsActivity}"
-        drawable="comandroidcontacts" />
-    <item
         component="ComponentInfo{com.android.icredit/com.android.icredit.ui.SplashActivity}"
         drawable="comandroidicredit" />
-    <item
-        component="ComponentInfo{114514}"
-        drawable="comandroidproviderscontacts" />
-    <item
-        component="ComponentInfo{com.android.providers.downloads/com.android.providers.downloads.ui.DownloadActivity}"
-        drawable="comandroidprovidersdownloads" />
-    <item
-        component="ComponentInfo{com.android.providers.downloads.ui/com.android.providers.downloads.ui.DownloadActivity}"
-        drawable="comandroidprovidersdownloadsui" />
-    <item
-        component="ComponentInfo{com.android.providers.downloads.ui/com.android.providers.downloads.ui.DownloadList}"
-        drawable="comandroidprovidersdownloadsui" />
-    <item
-        component="ComponentInfo{com.android.providers.downloads.ui/com.android.providers.downloads.ui.GnDownloadTabActivity}"
-        drawable="comandroidprovidersdownloadsui" />
-    <item
-        component="ComponentInfo{com.android.soundrecorder/com.android.soundrecorder.MzRecorderActivity}"
-        drawable="comandroidsoundrecorder" />
-    <item
-        component="ComponentInfo{com.android.soundrecorder/com.android.soundrecorder.SoundRecorder}"
-        drawable="comandroidsoundrecorder" />
-    <item
-        component="ComponentInfo{com.android.soundrecorder/com.android.soundrecorder.RecordListActivity}"
-        drawable="comandroidsoundrecorder" />
     <item component="ComponentInfo{114514}" drawable="comandroiddazhihui" />
-    <item
-        component="ComponentInfo{com.android.stk/com.android.stk.StkLauncherActivity}"
-        drawable="comandroidstk" />
-    <item
-        component="ComponentInfo{com.android.stk/com.android.stk.StkMain}"
-        drawable="comandroidstk" />
-    <item
-        component="ComponentInfo{com.android.stk/com.android.stk.StkLauncherActivity2}"
-        drawable="comandroidstk" />
-    <item
-        component="ComponentInfo{com.android.stk/com.android.stk.PrimaryStkMain}"
-        drawable="comandroidstk" />
-    <item
-        component="ComponentInfo{com.android.stk/com.android.stk.StkLauncherListActivity}"
-        drawable="comandroidstk" />
-    <item
-        component="ComponentInfo{com.android.updater/com.android.updater.MainActivity}"
-        drawable="comandroidupdater" />
     <item
         component="ComponentInfo{com.android.vending/com.android.vending.AssetBrowserActivity}"
         drawable="comandroidvending" />
@@ -869,12 +743,6 @@
     <item
         component="ComponentInfo{com.duokan.phone.remotecontroller/com.xiaomi.mitv.phone.remotecontroller.HoriWidgetMainActivityV2}"
         drawable="comduokanphoneremotecontroller" />
-    <item
-        component="ComponentInfo{com.duokan.reader/com.duokan.reader.DkReaderActivity}"
-        drawable="comduokanreader" />
-    <item
-        component="ComponentInfo{com.duokan.reader/p36d9a2d1.pdfc99c2a.p9b0a3007.p88426b29}"
-        drawable="comduokanreader" />
     <item
         component="ComponentInfo{com.duowan.kiwi/com.duowan.kiwi.simpleactivity.SplashActivity}"
         drawable="comduowankiwi" />
@@ -3250,7 +3118,6 @@
         drawable="meweishuexp" />
     <item component="ComponentInfo{114514}" drawable="meyidui" />
     <item component="ComponentInfo{114514}" drawable="mezhouzhuo810zznote" />
-    <item component="ComponentInfo{114514}" drawable="mini combaidutiebamini" />
     <item component="ComponentInfo{114514}" drawable="moelowarc" />
     <item component="ComponentInfo{114514}" drawable="mogovdsatbis" />
     <item
