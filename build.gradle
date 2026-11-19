@@ -25,6 +25,15 @@ allprojects {
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
         maven { url 'https://plugins.gradle.org/m2/' }
     }
+
+    // Frames 3.4.2 pulls the moving JitPack "-SNAPSHOT" of RecyclerView-FastScroll.
+    // That snapshot is now rebuilt with JDK 17 bytecode (major 61), which the
+    // AGP 4.2 Jetifier cannot read. Pin the last Java 7 build with an identical API.
+    configurations.all {
+        resolutionStrategy {
+            force 'com.github.jahirfiquitiva:RecyclerView-FastScroll:a32ebcecfc'
+        }
+    }
 }
 
 task clean(type: Delete) {

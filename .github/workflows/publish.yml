@@ -1,8 +1,16 @@
-name: Android CI
+name: Build & Release APK
 
 on:
   push:
     branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -10,38 +18,63 @@ jobs:
     if: ${{ !startsWith(github.event.head_commit.message, '[skip ci]') }}
 
     steps:
-      - uses: actions/checkout@v2
-      - name: Setup JDK 1.8
-        uses: actions/setup-java@v1
-        with:
-          java-version: 1.8
-      - name: Retrieve version
-        run: |
-          echo VERSION=$(echo ${{ github.event.head_commit.id }} | head -c 10) >> $GITHUB_ENV
-      - name: Build with Gradle
-        run: bash ./gradlew -PappVerName=${{ env.VERSION }} assembleRelease
-        
-      - name: Sign Android release
-        if: success()
-        id: sign
-        uses: r0adkll/sign-android-release@v1
-        env:
-          BUILD_TOOLS_VERSION: "30.0.3"
-        with:
-          releaseDirectory: app/build/outputs/apk/release
-          signingKeyBase64: ${{ secrets.SIGNING_KEY }}
-          alias: ${{ secrets.ALIAS }}
-          keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
-          keyPassword: ${{ secrets.KEY_PASSWORD }}
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Post to channel
-        if: contains(github.event.head_commit.message, '[skip post]') == false
-        env:
-          CHANNEL_ID: ${{ secrets.CHANNEL_ID }}
-          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
-          MODULE: ${{ steps.sign.outputs.signedReleaseFile }}
-          COMMIT_MESSAGE: |+
-            ${{ github.event.head_commit.message }}
+      # Gradle 6.7.1 / AGP 4.2.0 do not support JDK 17+, so stay on 11.
+      - name: Set up JDK 11
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '11'
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install platform and build-tools
+        run: sdkmanager "platforms;android-30" "build-tools;30.0.3"
+
+      - name: Cache Gradle
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle', '**/*.gradle.kts', 'gradle/wrapper/gradle-wrapper.properties', 'buildSrc/src/main/java/*.kt') }}
+          restore-keys: gradle-${{ runner.os }}-
+
+      # app/build.gradle already signs the release build with the bundled
+      # test keystore (app/frames.jks, alias/password: frames).
+      - name: Build signed release APK
+        run: bash ./gradlew :app:assembleRelease --stacktrace
+
+      - name: Resolve release metadata
+        id: meta
         run: |
-          ESCAPED=`python3 -c 'import json,os,urllib.parse; print(urllib.parse.quote(json.dumps(os.environ["COMMIT_MESSAGE"])))'`
-          curl -v "https://api.telegram.org/bot${BOT_TOKEN}/sendMediaGroup?chat_id=${CHANNEL_ID}&media=%5B%7B%22type%22:%22document%22,%20%22media%22:%22attach://module%22,%22caption%22:${ESCAPED}%7D%5D"  -F module="@$MODULE"
+          set -euo pipefail
+          VERSION=$(grep -oP 'versionName = "\K[^"]+' buildSrc/src/main/java/Blueprint.kt)
+          APK=$(find app/build/outputs/apk/release -name '*.apk' | head -n1)
+          test -n "$APK"
+          echo "apk_name=Meta-Icon-Pack-${VERSION}.apk" >> "$GITHUB_OUTPUT"
+          echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
+          echo "tag=v${VERSION}-b${GITHUB_RUN_NUMBER}" >> "$GITHUB_OUTPUT"
+          cp "$APK" "Meta-Icon-Pack-${VERSION}.apk"
+
+      - name: Verify APK signature
+        run: |
+          set -euo pipefail
+          APK="${{ steps.meta.outputs.apk_name }}"
+          "$ANDROID_SDK_ROOT/build-tools/30.0.3/apksigner" verify --print-certs "$APK"
+
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.meta.outputs.tag }}
+          name: Meta-Icon Pack ${{ steps.meta.outputs.version }} (build ${{ github.run_number }})
+          body: |
+            Meta-Icon Pack ${{ steps.meta.outputs.version }}
+            Built from ${{ github.sha }} by GitHub Actions.
+
+            > Signed with the bundled test keystore (`app/frames.jks`), not a production key.
+          files: ${{ steps.meta.outputs.apk_name }}
+          fail_on_unmatched_files: true
